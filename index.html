@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pirates Physics: Rufi's Adventure</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Phaser 3 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+</head>
+<body>
+    <div id="game-container"></div>
+    
+    <!-- Instructions Modal -->
+    <div id="instructions-modal">
+        <div class="modal-content glass-panel instructions-panel">
+            <h2>🏴‍☠️ Selamat Datang Kapten Rufi! 🏴‍☠️</h2>
+            <div class="instructions-content">
+                <p><strong>Misi Anda:</strong> Kalahkan 7 Kapal Musuh Bajak Laut yang berkeliaran di perairan ini!</p>
+                <ul class="how-to-play">
+                    <li>🕹️ <strong>Gerak:</strong> Gunakan tombol <code>W A S D</code> atau panah arah untuk mengemudikan kapal.</li>
+                    <li>🎯 <strong>Tembak:</strong> Klik <code>Kiri Mouse</code> untuk menembakkan meriam ke arah kursor.</li>
+                    <li>📝 <strong>Amunisi:</strong> Peluru meriam terbatas! Klik tombol <strong>"Jawab Soal Fisika"</strong> untuk mendapatkan peluru tambahan.</li>
+                    <li>📚 <strong>Pulau Belajar:</strong> Cari 3 pulau yang memiliki ikon buku. Dekati dan tekan <code>E</code> untuk belajar fisika!</li>
+                </ul>
+            </div>
+            <button id="btn-start-game" class="btn-action pulse-btn">Mulai Berlayar!</button>
+        </div>
+    </div>
+    
+    <!-- UI Overlay -->
+    <div id="ui-overlay">
+        <div class="hud">
+            <div class="hud-item health-hud">
+                <span>HP: </span>
+                <div class="health-bar-bg"><div class="health-bar-fill" id="player-health-fill"></div></div>
+            </div>
+            <div class="hud-item ammo-hud">
+                <img src="assets/Ship parts/cannonBall.png" alt="Ammo" class="ammo-icon">
+                <span id="ammo-count">0</span>
+            </div>
+            <div class="hud-item enemies-hud">
+                <span>Musuh Tersisa: <span id="enemies-count">5</span></span>
+            </div>
+            <button id="btn-question" class="btn-action">Jawab Soal Fisika (Dapat 5 Peluru!)</button>
+        </div>
+        
+        <!-- Messages -->
+        <div id="game-message" class="hidden">
+            <h1 id="message-text"></h1>
+            <button id="btn-restart" class="btn-action">Main Lagi</button>
+        </div>
+
+        <!-- Mobile Controls -->
+        <div id="mobile-controls" class="mobile-controls">
+            <div class="dpad">
+                <button id="btn-up" class="dpad-btn up">▲</button>
+                <button id="btn-left" class="dpad-btn left">◀</button>
+                <button id="btn-right" class="dpad-btn right">▶</button>
+                <button id="btn-down" class="dpad-btn down">▼</button>
+            </div>
+            <div class="action-buttons">
+                <button id="btn-interact" class="action-btn">E</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Question Modal -->
+    <div id="question-modal" class="hidden">
+        <div class="modal-content glass-panel">
+            <h2>Tantangan Fisika!</h2>
+            <p id="question-text">Pertanyaan akan muncul di sini</p>
+            <div id="options-container" class="options-grid">
+                <!-- Buttons injected by JS -->
+            </div>
+            <div id="feedback-text"></div>
+        </div>
+    </div>
+
+    <!-- Learning Modal -->
+    <div id="learning-modal" class="hidden">
+        <div class="modal-content glass-panel">
+            <h2 id="learning-title">Judul Materi</h2>
+            <div id="learning-tabs" class="learning-tabs hidden"></div>
+            <div id="learning-content" class="learning-text">Materi...</div>
+            <button id="btn-close-learning" class="btn-action">Tutup</button>
+        </div>
+    </div>
+    
+    <!-- Interaction Prompt -->
+    <div id="interaction-prompt" class="hidden">
+        Tekan 'E' untuk belajar!
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
